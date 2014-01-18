@@ -1,5 +1,8 @@
 *.class
 
+# target directory #
+target
+
 # Package Files #
 *.jar
 *.war
