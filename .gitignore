@@ -3,6 +3,14 @@
 # target directory #
 target
 
+# ide settings
+.project
+.classpath
+.settings
+
+# hsqldb data directory
+data
+
 # Package Files #
 *.jar
 *.war
