@@ -19,8 +19,9 @@ public class RekapPenjualanRouteBuilder extends RouteBuilder {
 			.to("activemq:queue:APP-1-REKAP")
 			.unmarshal(csvDataFormat)
 			.split(body())
-			.to("log:APP-1-REKAP-LOG?level=DEBUG&showAll=true")
-			.to("jpa://org.jug.id.brainmaster.camel.entity.TransaksiPenjualan");
+			.multicast().parallelProcessing()
+				.to("log:APP-1-REKAP-LOG?level=DEBUG&showAll=true", "jpa://org.jug.id.brainmaster.camel.entity.TransaksiPenjualan")
+			.end();
 		
 		
 	}
