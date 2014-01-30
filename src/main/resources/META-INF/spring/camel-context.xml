@@ -12,11 +12,16 @@
 
 	<context:component-scan base-package="org.jug.id.brainmaster.camel.entity" />
 	
+	<!-- open if you want to use hsql 
 	<jdbc:embedded-database id="embeddedDatasource" type="HSQL" />
+	-->
 
 	<camel:camelContext xmlns="http://camel.apache.org/schema/spring">
 		<camel:package>org.jug.id.brainmaster.camel.route</camel:package>
 	</camel:camelContext>
+	
+	<!-- processors -->
+	<bean id="xmlTransformerProcessor" class="org.jug.id.brainmaster.camel.processor.XmlTransformerProcessor" />
 	
 	<!-- activemq / jms component -->
 	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
@@ -32,38 +37,8 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-	<!-- csv configuration 
-	<bean id="csvConfig" class="org.apache.commons.csv.writer.CSVConfig">
-		<property name="fields">
-			<list>
-				<bean class="org.apache.commons.csv.writer.CSVField">
-					<property name="name" value="tanggalPenjualan" />
-				</bean>
-				<bean class="org.apache.commons.csv.writer.CSVField">
-					<property name="name" value="kodeBarang" />
-				</bean>
-				<bean class="org.apache.commons.csv.writer.CSVField">
-					<property name="name" value="jumlahPenjualan" />
-				</bean>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="excelStrategy" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
-		<property name="staticField" value="org.apache.commons.csv.CSVStrategy.EXCEL_STRATEGY" />
-	</bean>
-	-->
-
-	<!-- db datasource and entitymanager -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
-		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-		<property name="url" value="jdbc:hsqldb:file:data/jug-camel-demo" />
-		<property name="username" value="sa" />
-		<property name="password" value="" />
-	</bean>
-
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="dataSource" />
+		<!-- <property name="dataSource" ref="dataSource" /> -->
 		<property name="persistenceUnitName" value="jug-camel-demo"/>
 	</bean>
 	

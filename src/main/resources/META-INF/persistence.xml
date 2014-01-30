@@ -1,12 +1,24 @@
 <persistence xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<persistence-unit name="jug-camel-demo" transaction-type="RESOURCE_LOCAL">
+		<!-- db script for user -->
+		<!--  
+		CREATE USER 'jug-camel-demo'@'localhost' IDENTIFIED BY 'cameldemo';
+		GRANT ALL PRIVILEGES ON jug_camel_demo.* TO 'jug-camel-demo'@'localhost';
+		FLUSH PRIVILEGES;
+		-->
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
+		<!--  HSQL
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+		-->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
 			<property name="hibernate.max_fetch_depth" value="3" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.connection.username" value="jug-camel-demo"/>
+			<property name="hibernate.connection.password" value="cameldemo"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/jug_camel_demo"/>
 		</properties>
 	</persistence-unit>
 </persistence>
