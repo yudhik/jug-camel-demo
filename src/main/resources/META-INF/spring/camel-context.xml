@@ -22,8 +22,9 @@
 	
 	<!-- processors -->
 	<bean id="xmlTransformerProcessor" class="org.jug.id.brainmaster.camel.processor.XmlTransformerProcessor" />
-	
-	<!-- activemq / jms component -->
+	<bean id="controlFileReaderProcessor" class="org.jug.id.brainmaster.camel.processor.ControlFileReaderProcessor" />
+  
+	<!-- activemq / jms component 
 	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
 		<property name="connectionFactory">
 			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
@@ -31,18 +32,19 @@
 			</bean>
 		</property>
 	</bean>
+    -->
 
-	<!-- jpa component -->
+	<!-- jpa component 
 	<bean id="jpa" class="org.apache.camel.component.jpa.JpaComponent">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<!-- <property name="dataSource" ref="dataSource" /> -->
 		<property name="persistenceUnitName" value="jug-camel-demo"/>
 	</bean>
 	
 	<bean class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
+  -->
 </beans>

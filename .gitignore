@@ -15,3 +15,5 @@ data
 *.jar
 *.war
 *.ear
+
+control-folder
